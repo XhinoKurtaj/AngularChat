@@ -117,8 +117,16 @@
               "devServerTarget": "AngularChat:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
-  "defaultProject": "AngularChat"
+    }
+  },
+  "defaultProject": "AngularChat",
+  "cli": {
+    "analytics": false
+  }
 }
