@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyCVg2UGa13bJ8b-Icph6Y04KgV13Z-1CqM",
-    authDomain: "angularchat-98b45.firebaseapp.com",
-    databaseURL: "https://angularchat-98b45.firebaseio.com",
-    projectId: "angularchat-98b45",
-    storageBucket: "angularchat-98b45.appspot.com",
-    messagingSenderId: "942326938066",
-    appId: "1:942326938066:web:63e0c19072497491c2b00b",
-    measurementId: "G-XBCLCJ3CZ5"
+  apiKey: "AIzaSyBExmAowhxuFbwtTOaSxjdUUerwKGHeapc",
+  authDomain: "achat-1abf7.firebaseapp.com",
+  databaseURL: "https://achat-1abf7.firebaseio.com",
+  projectId: "achat-1abf7",
+  storageBucket: "achat-1abf7.appspot.com",
+  messagingSenderId: "242416543844",
+  appId: "1:242416543844:web:285d95638ed7631a471771",
+  measurementId: "G-8V5PBY6FTW"
     }
 };
 
