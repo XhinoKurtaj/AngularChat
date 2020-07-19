@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { RegisterComponent } from './register/register.component';
     ChatComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

@@ -1,25 +1,23 @@
-<div class="form-container">
-  <h2>Register</h2>
-<form [formGroup]="this._authService.loginForm" (ngSubmit)="onSubmit()" >
-  <label>
-    <input placeholder="Email"
-        formControlName="email"
-        type="email"
-        class="input-field col s12"
-        required>
-  </label>
-  <label>
-    <input placeholder="Password"
-        formControlName="password"
-        type="password"
-        class="input-field col s12"
-        required>
-  </label>
-
-  <button
-    class="waves-effect waves-light btn col s12"
-    (click)="onSubmit()">
-    Submit
-  </button>
-</form>
+<div class="container-wrapper container d-flex justify-content-center align-items-center">
+  <div class="form-wrapper text-center">
+    <h2 class="text-center">Register</h2>
+    <form [formGroup]="signupForm" (submit)="submit()" novalidate>
+      <div class="name-wrapper d-flex">
+       <div class="form-group first-name">
+         <input type="text" class="form-control" id="first-name-input" placeholder="First Name" formControlName="firstName">
+       </div>
+       <div class="form-group last-name">
+         <input type="text" class="form-control" id="last-name-input" placeholder="Last Name" formControlName="lastName">
+       </div>
+     </div>
+      <div class="form-group">
+        <input type="email" class="form-control" id="email-input" placeholder="Email" formControlName="email">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" id="password-input" placeholder="Password" formControlName="password">
+      </div>
+      <button type="submit" class="btn btn-outline-primary" [disabled]="!signupForm.valid">Submit</button>
+    </form>
+    <small><a routerLink="/login">Already have an Account?</a></small>
+  </div>
 </div>

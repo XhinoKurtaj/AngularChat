@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
 // import { switchMap } from 'rxjs/operators';
-import { User } from './user-model';
 import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
