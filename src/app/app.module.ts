@@ -14,6 +14,11 @@ import { AuthService } from './services/auth.service';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { ChatInputComponent } from './chat/components/chat-input/chat-input.component';
+import { ChatroomListComponent } from './chat/components/chatroom-list/chatroom-list.component';
+import { ChatroomTitleBarComponent } from './chat/components/chatroom-title-bar/chatroom-title-bar.component';
+import { ChatMessagesComponent } from './chat/components/chat-messages/chat-messages.component';
+import { ChatroomWindowComponent } from './chat/components/chatroom-window/chatroom-window.component';
 
 
 @NgModule({
@@ -23,7 +28,12 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    NavbarComponent
+    NavbarComponent,
+    ChatInputComponent,
+    ChatroomListComponent,
+    ChatroomTitleBarComponent,
+    ChatMessagesComponent,
+    ChatroomWindowComponent
   ],
   imports: [
     BrowserModule,
