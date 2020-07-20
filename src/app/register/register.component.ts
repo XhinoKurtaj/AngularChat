@@ -43,8 +43,8 @@ export class RegisterComponent implements OnInit {
       const {firstName, lastName, email, password} = this.signupForm.value;
       console.log(`First Name: ${firstName}, Last Name: ${lastName}, Email: ${email}, Password: ${password}`);
     } else {
-      const failedLoginAlert = new Alert('Please ender a valid name, email and password, try again', AlertType.Danger);
-      this.alertService.alerts.next(failedLoginAlert);
+      const failedRegisterAlert = new Alert('Please ender a valid name, email and password, try again', AlertType.Danger);
+      this.alertService.alerts.next(failedRegisterAlert);
     }
   }
 

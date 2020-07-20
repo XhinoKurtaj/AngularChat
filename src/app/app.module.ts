@@ -8,9 +8,11 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
+import { NgxLoadingModule } from 'ngx-loading';
 //Services
 import { AuthService } from './services/auth.service';
 import { AlertService } from './services/alert.service';
+import { LoadingService } from './services/loading.service';
 //Components
 import { ChatComponent } from './chat/chat.component';
 import { LoginComponent } from './login/login.component';
@@ -43,11 +45,13 @@ import { ChatroomWindowComponent } from './chat/components/chatroom-window/chatr
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxLoadingModule.forRoot({})
   ],
   providers: [
     AuthService,
-    AlertService
+    AlertService,
+    LoadingService
   ],
   bootstrap: [AppComponent]
 })
