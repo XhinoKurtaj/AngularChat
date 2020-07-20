@@ -1,12 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
-.container {
-  height: calc(100vh - 80px) !important;
+
+.container-wrapper {
+    height: calc(100vh - 80px) !important;
 }
 
 .navbar {
-  height: 80px;
+    height: 80px;
 }
 
-button {
-  width: 100%;
+button .btn {
+    width: 100%;
+    border-radius: 0;
+}
+
+.btn:focus {
+    box-shadow: none;
 }

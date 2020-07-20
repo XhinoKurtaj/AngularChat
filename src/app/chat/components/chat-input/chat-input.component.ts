@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatInputComponent implements OnInit {
 
+  public newMessageText: string = '';
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public submit(message: string): void{
+    //TODO save text to firebase
+    console.log("New message: ", message)
+
+    //Reset input
+    this.newMessageText = '';
   }
 
 }
