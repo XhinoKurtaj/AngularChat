@@ -11,7 +11,6 @@ const routes: Routes = [
 { path: 'register', component: RegisterComponent},
 { path: 'chat', component: ChatComponent },
 { path: '**', redirectTo:'login' },
-{ path: 'home', component: HomeComponent },
 ];
 
 @NgModule({

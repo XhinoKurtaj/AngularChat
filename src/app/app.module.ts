@@ -13,7 +13,6 @@ import { AuthService } from './services/auth.service';
 import { AlertService } from './services/alert.service';
 //Components
 import { ChatComponent } from './chat/chat.component';
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -28,7 +27,6 @@ import { ChatroomWindowComponent } from './chat/components/chatroom-window/chatr
   declarations: [
     AppComponent,
     ChatComponent,
-    HomeComponent,
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
