@@ -9,6 +9,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { NgxLoadingModule } from 'ngx-loading';
+//Guards
+import { AuthGuard } from './guards/auth.guard';
 //Services
 import { AuthService } from './services/auth.service';
 import { AlertService } from './services/alert.service';
@@ -23,7 +25,6 @@ import { ChatroomListComponent } from './chat/components/chatroom-list/chatroom-
 import { ChatroomTitleBarComponent } from './chat/components/chatroom-title-bar/chatroom-title-bar.component';
 import { ChatMessagesComponent } from './chat/components/chat-messages/chat-messages.component';
 import { ChatroomWindowComponent } from './chat/components/chatroom-window/chatroom-window.component';
-
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ChatroomWindowComponent } from './chat/components/chatroom-window/chatr
   providers: [
     AuthService,
     AlertService,
-    LoadingService
+    LoadingService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
