@@ -6,11 +6,12 @@ import { Alert } from '../classes/alert';
 import { AlertService } from './alert.service'
 import { Observable } from 'rxjs';
 import { AlertType } from '../enums/alert-type.enum';
-import { of } from 'rxjs';
+import { of, from  } from 'rxjs';
 
-// import { auth } from 'firebase/app';
-// import { AngularFireAuth } from '@angular/fire/auth';
-// import { AngularFirestore } from '@angular/fire/firestore';
+import { auth } from 'firebase/app';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { switchMap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -21,64 +22,55 @@ export class AuthService {
   public currentUser: Observable<User | null>;
 
   constructor(
-     // private afAuth: AngularFireAuth,
-     // private afs: AngularFirestore,
+     private afAuth: AngularFireAuth,
+     private db: AngularFirestore,
      private router: Router,
      private alertService: AlertService
    ) {
-     //TODO fetch the user from the firebase backend,  then set the user
-     this.currentUser = of(null);
+     this.currentUser = this.afAuth.authState.pipe(switchMap((user) => {
+       if ( user )
+         return this.db.doc<User>(`users/${user.uid}`).valueChanges();
+       else
+          return of(null);
+     }));
   }
 
   public register(firstName: string, lastName: string, email: string, password: string): Observable<boolean>  {
-    //TODO class firebase signup function
-    return of(true)
+    return from(
+      //Create new user with email and password  in firebase
+      this.afAuth.createUserWithEmailAndPassword(email, password)
+        .then((user) => {
+          //Create collection with name users and new document with newly created user id
+          const userRef: AngularFirestoreDocument<User> = this.db.doc(`users/${user.user.uid}`);
+          //Create an object with user other data
+          const updatedUser = {
+            id: user.user.uid,
+            email: user.user.email,
+            firstName,
+            lastName,
+            photoUrl: 'https://firebasestorage.googleapis.com/v0/b/achat-1abf7.appspot.com/o/default_profile_pic.jpg?alt=media&token=fb52711b-5cf3-4ee0-9581-9850b0b9a2dc'
+          }
+          //Set user data to User document
+          userRef.set(updatedUser);
+          return true;
+        })
+        .catch( (err) => false)
+    )
   }
 
 
   public login(email: string, password: string): Observable<boolean> {
-    // TODO call Firebase login function
-    return of(true);
+    return from(
+      this.afAuth.signInWithEmailAndPassword(email, password)
+          .then((user) => true)
+          .catch((e) => false)
+    )
   }
 
   public logout(): void {
-    // TODO call Firebase logout function
-    this.router.navigate(['/login']);
-    this.alertService.alerts.next(new Alert('You have been signed out.'));
+    this.afAuth.signOut().then(() => {
+      this.router.navigate(['/login']);
+      this.alertService.alerts.next(new Alert('You have been signed out.'));
+    })
   }
-
-    // login(email: string, password: string) {
-    //   // Authenticate user with given credentials
-    //   this.afAuth.signInWithEmailAndPassword(email, password)
-    //   .then(value => {
-    //     console.log( "worked!");
-    //     // Case user Authenticates successfully redirect him to home
-    //     this.router.navigateByUrl('/home');
-    //   })
-    //   .catch(err => {
-    //     console.log('Something went wrong: ', err.message);
-    //   });
-    // }
-
-    // emailSignup(email: string, password: string) {
-    //   //Create new user with email and password in Authenticate section in firebase
-    //   //?still need to check/read how the user authenticate works in fireebase ??
-    //   //TODO: read more about user authenticate
-    //   this.afAuth.createUserWithEmailAndPassword(email, password)
-    //   .then(value => {
-    //    console.log('Sucess', value);
-    //    // Case user registered successfully redirect him to home
-    //     this.router.navigateByUrl('/home');
-    //   })
-    //   .catch(error => {
-    //     console.log('Something went wrong: ', error);
-    //   });
-    // }
-    //
-    // logout() {
-    //   this.afAuth.signOut().then(() => {
-    //     this.router.navigate(['/']);
-    //   });
-    // }
-
 }

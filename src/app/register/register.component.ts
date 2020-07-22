@@ -47,14 +47,19 @@ export class RegisterComponent implements OnInit, OnDestroy {
     if(this.signupForm.valid){
       //When login occurs set isLoading state to true
       this.loadingService.isLoading.next(true);
-      //TODO call the auth service
       const {firstName, lastName, email, password} = this.signupForm.value;
+      //Push subscription to subscriptions array
       this.subscriptions.push(
+        //Send form data to register method in authentication service
         this.auth.register(firstName, lastName, email, password).subscribe( success => {
           if (success) {
+            //Case user registered successfully redirect him to chat view
             this.router.navigate(['/chat']);
+          }else{
+            const failedSignupAlert = new Alert('There was a problem signing up, try again.', AlertType.Danger);
+            this.alertService.alerts.next(failedSignupAlert);
           }
-          this.loadingService.isLoading.next(false);
+           this.loadingService.isLoading.next(false);
         })
       );
     } else {
