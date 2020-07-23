@@ -9,7 +9,12 @@ const routes: Routes = [
 { path: '', redirectTo: 'login', pathMatch: 'full' },
 { path: 'login', component: LoginComponent },
 { path: 'register', component: RegisterComponent},
-{ path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
+{ path: 'chat', canActivate: [AuthGuard],
+  children: [
+    { path: '', component: ChatComponent },
+    { path:':chatroomId', component: ChatComponent }
+  ]
+},
 { path: '**', redirectTo:'login' },
 ];
 

@@ -20,6 +20,7 @@ import { switchMap } from 'rxjs/operators';
 export class AuthService {
 
   public currentUser: Observable<User | null>;
+  public currentUserSnapshot: User | null;
 
   constructor(
      private afAuth: AngularFireAuth,
@@ -27,12 +28,15 @@ export class AuthService {
      private router: Router,
      private alertService: AlertService
    ) {
+     //Fetching current user from auth states
      this.currentUser = this.afAuth.authState.pipe(switchMap((user) => {
        if ( user )
          return this.db.doc<User>(`users/${user.uid}`).valueChanges();
        else
           return of(null);
      }));
+
+    this.setCurrentUserSnapshot();
   }
 
   public register(firstName: string, lastName: string, email: string, password: string): Observable<boolean>  {
@@ -73,4 +77,8 @@ export class AuthService {
       this.alertService.alerts.next(new Alert('You have been signed out.'));
     })
   }
+
+  private setCurrentUserSnapshot(): void {
+     this.currentUser.subscribe(user => this.currentUserSnapshot = user);
+   }
 }
