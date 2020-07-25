@@ -3,7 +3,6 @@ import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { ChatroomService } from 'src/app/services/chatroom.service';
 import { LoadingService } from 'src/app/services/loading.service';
-// import {  } from 'rxjs';
 
 @Component({
   selector: 'app-chatroom-window',
@@ -12,12 +11,12 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class ChatroomWindowComponent implements OnInit, OnDestroy, AfterViewChecked {
 
-  @ViewChild('scrollContainer') private scrollContainer: ElementRef;
+  @ViewChild('scrollContainer') private scrolla: ElementRef;
 
   private subscriptions: Subscription[] = [];
   public chatroom: Observable<any>;
   public messages: Observable<any>;
-
+  private scrollContainer: any = this.scrolla;
 
   constructor(
     private route: ActivatedRoute,

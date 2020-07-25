@@ -34,9 +34,10 @@ export class ChatroomService {
         if (chatroomId){
           this.loadingService.isLoading.next(true);
           return db.collection(`chatrooms/${chatroomId}/messages`, ref => {
-            return ref.orderBy('createdAt', 'desc').limit(100);
+            return ref.orderBy('createdAt', 'desc').limit(50);
           })
-          .valueChanges().pipe(
+          .valueChanges()
+          .pipe(
             map(arr => arr.reverse())
           );
         } else {
