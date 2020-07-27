@@ -6,7 +6,6 @@
         <div class="name">
             {{ message.sender.firstName }} {{ message.sender.lastName}}
         </div>
-        <small class="timestamp"> {{ message.createdAt | date:'medium' }}</small>
         <div class="message">{{ message.message }}</div>
     </div>
 </div>
