@@ -11,12 +11,11 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class ChatroomWindowComponent implements OnInit, OnDestroy, AfterViewChecked {
 
-  @ViewChild('scrollContainer') private scrolla: ElementRef;
+  @ViewChild('scrollContainer') private scrollContainer: ElementRef;
 
   private subscriptions: Subscription[] = [];
   public chatroom: Observable<any>;
   public messages: Observable<any>;
-  private scrollContainer: any = this.scrolla;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,7 +39,7 @@ export class ChatroomWindowComponent implements OnInit, OnDestroy, AfterViewChec
 
 
   ngOnInit(): void {
-    this.scrollToBottom();
+    // this.scrollToBottom();
     this.subscriptions.push(
       this.route.paramMap.subscribe( params => {
           const chatroomId = params.get('chatroomId');
@@ -57,13 +56,11 @@ export class ChatroomWindowComponent implements OnInit, OnDestroy, AfterViewChec
     this.scrollToBottom();
   }
 
-  private scrollToBottom(): void{
-    try{
+  private scrollToBottom(): void {
+    debugger;
+    try {
       this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
-
-    } catch(err){
-        console.log("erer: ", err)
-    }
+    } catch(err) {}
   }
 
 }

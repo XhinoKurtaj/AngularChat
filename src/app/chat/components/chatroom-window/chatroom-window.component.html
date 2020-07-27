@@ -9,7 +9,7 @@
 </div>
 
 <ng-template #chatMessages>
-  <div class="message-wrapper h-100">
+  <div class="message-wrapper h-100" #scrollContainer>
     <ng-container *ngFor="let message of messages">
       <app-chat-messages [message]="message"></app-chat-messages>
     </ng-container>
