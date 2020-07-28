@@ -34,6 +34,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/chat';
+    this.subscriptions.push(
+      this.auth.currentUser.subscribe(user => {
+        if(!!user){
+          this.router.navigateByUrl('/chat');
+        }
+      })
+    )
   }
 
   private createForm(): void {
@@ -75,7 +82,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach( sub => sub.unsubscribe());
   }
 
-  //Helper method 
+  //Helper method
   private displayFailedLogin(): void {
     const failedLoginAlert = new Alert('Your email or password were invalid, try again', AlertType.Danger);
     this.alertService.alerts.next(failedLoginAlert);

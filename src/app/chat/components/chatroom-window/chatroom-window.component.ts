@@ -57,7 +57,6 @@ export class ChatroomWindowComponent implements OnInit, OnDestroy, AfterViewChec
   }
 
   private scrollToBottom(): void {
-    debugger;
     try {
       this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
     } catch(err) {}
