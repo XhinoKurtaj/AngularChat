@@ -1,4 +1,11 @@
 <div class="h-100 d-flex flex-column chatroom-list">
+  <div class="input-group create-chat">
+    <input [(ngModel)]="chatName" type="text" class="form-control" placeholder="Enter a name for new chat" (keyup.enter)="submit(newChat.value)" #newChat>
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="button" (click)="submit(newChat.value)">Enter</button>
+    </div>
+  </div>
+  <hr>
   <ng-container *ngFor="let chatroom of chatroomService.chatrooms | async ">
     <div class="chatroom-list-item" >
       <a [routerLink]="['/chat', chatroom.id]"> {{ chatroom.name }}</a>

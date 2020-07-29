@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, of } from 'rxjs';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { LoadingService } from './loading.service';
 import { switchMap, map } from 'rxjs/operators';
 import { AuthService } from './auth.service';
@@ -56,5 +56,18 @@ export class ChatroomService {
      };
 
      this.db.collection(`chatrooms/${chatroomId}/messages`).add(message);
+   }
+
+   public createChat(name: string): void{
+     const chat = {
+        name:name,
+        createdAt: new Date(),
+     }
+     this.db.collection('chatrooms').add(chat).then( ref => {
+       let chatId = ref.id
+       const room = Object.assign({}, chat, {id: chatId});
+       const chatRef: AngularFirestoreDocument = this.db.doc(`chatrooms/${chatId}`);
+       chatRef.set(room)
+     });
    }
 }

@@ -8,6 +8,7 @@ import { ChatroomService } from 'src/app/services/chatroom.service';
 })
 export class ChatroomListComponent implements OnInit {
 
+  public chatName: string = "";
   constructor(
     public chatroomService: ChatroomService
   ) { }
@@ -15,4 +16,9 @@ export class ChatroomListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public submit(message: string): void{
+    this.chatroomService.createChat(message);
+    //Reset input
+    this.chatName = '';
+  }
 }
